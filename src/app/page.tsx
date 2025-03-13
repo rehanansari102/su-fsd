@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 "use client"; // Required for Next.js App Router (app directory)
 
 import { useState, useEffect } from "react";
