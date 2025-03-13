@@ -7,7 +7,7 @@ interface CsvItem {
   filename: string;
 }
 const CsvDataComponent = () => {
-  const [csvData, setCsvData] = useState([]);
+  const [csvData, setCsvData] = useState<CsvItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [sortBy, setSortBy] = useState("created_at_asc"); // Default sorting
