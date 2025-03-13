@@ -13,6 +13,7 @@ export async function GET() {
 
     return Response.json({ success: true, data });
   } catch (error) {
+    console.log(error)
     return Response.json({ success: false, error: "Error reading CSV file" }, { status: 500 });
   }
 }

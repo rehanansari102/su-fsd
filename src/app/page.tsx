@@ -1,9 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 "use client"; // Required for Next.js App Router (app directory)
 
 import { useState, useEffect } from "react";
-
+interface CsvItem {
+  created_at: string;
+  filename: string;
+}
 const CsvDataComponent = () => {
   const [csvData, setCsvData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,7 +21,7 @@ const CsvDataComponent = () => {
 
         if (result.success) {
           // Convert API response to structured data with "created_at" and "filename"
-          const formattedData = result.data.map((item : any) => {
+          const formattedData: CsvItem[]  = result.data.map((item: Record<string, string>) => {
             const keys = Object.values(item);
             console.log(keys);
             return {
@@ -33,6 +35,7 @@ const CsvDataComponent = () => {
           setError("Failed to fetch CSV data");
         }
       } catch (err) {
+        console.log(err)
         setError("Error fetching CSV data");
       } finally {
         setLoading(false);
@@ -43,13 +46,13 @@ const CsvDataComponent = () => {
   }, []);
 
   // Sorting function
-  const sortData = (data : any, sortBy : any) => {
+  const sortData = (data: CsvItem[], sortBy: string) => {
     return [...data].sort((a, b) => {
       if (sortBy === "created_at_asc") return new Date(a.created_at) - new Date(b.created_at);
       if (sortBy === "created_at_desc") return new Date(b.created_at) - new Date(a.created_at);
   
       if (sortBy.startsWith("filename")) {
-        const extractNumber = (filename : any) => {
+        const extractNumber = (filename : string) => {
           const match = filename.match(/^(\d+)/); // Match leading number if present
           return match ? parseInt(match[0], 10) : Infinity; // Convert to integer for numeric sorting
         };
