@@ -17,7 +17,7 @@ const CsvDataComponent = () => {
 
         if (result.success) {
           // Convert API response to structured data with "created_at" and "filename"
-          const formattedData = result.data.map((item) => {
+          const formattedData = result.data.map((item : any) => {
             const keys = Object.values(item);
             console.log(keys);
             return {
@@ -41,13 +41,13 @@ const CsvDataComponent = () => {
   }, []);
 
   // Sorting function
-  const sortData = (data, sortBy) => {
+  const sortData = (data : any, sortBy : any) => {
     return [...data].sort((a, b) => {
       if (sortBy === "created_at_asc") return new Date(a.created_at) - new Date(b.created_at);
       if (sortBy === "created_at_desc") return new Date(b.created_at) - new Date(a.created_at);
   
       if (sortBy.startsWith("filename")) {
-        const extractNumber = (filename) => {
+        const extractNumber = (filename : any) => {
           const match = filename.match(/^(\d+)/); // Match leading number if present
           return match ? parseInt(match[0], 10) : Infinity; // Convert to integer for numeric sorting
         };

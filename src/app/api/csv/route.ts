@@ -9,8 +9,7 @@ export async function GET() {
  
     // Parse CSV data
     const { data } = Papa.parse(fileContent, { header: false });
-    
-    console.log(data);
+
     return Response.json({ success: true, data });
   } catch (error) {
     return Response.json({ success: false, error: "Error reading CSV file" }, { status: 500 });
