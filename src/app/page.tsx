@@ -48,8 +48,8 @@ const CsvDataComponent = () => {
   // Sorting function
   const sortData = (data: CsvItem[], sortBy: string) => {
     return [...data].sort((a, b) => {
-      if (sortBy === "created_at_asc") return new Date(a.created_at) - new Date(b.created_at);
-      if (sortBy === "created_at_desc") return new Date(b.created_at) - new Date(a.created_at);
+      if (sortBy === "created_at_asc") return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+  if (sortBy === "created_at_desc") return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
   
       if (sortBy.startsWith("filename")) {
         const extractNumber = (filename : string) => {
