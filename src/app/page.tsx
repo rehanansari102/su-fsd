@@ -9,7 +9,7 @@ interface CsvItem {
 const CsvDataComponent = () => {
   const [csvData, setCsvData] = useState<CsvItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState("created_at_asc"); // Default sorting
 
   useEffect(() => {
